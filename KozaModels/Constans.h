@@ -13,7 +13,7 @@
 #define DB_Name @"UserDetails.sqlite"
 
 #define ENG_FILIPIONO @"eng_filipino_flag";
-#define TOTAL_NO_ROW 0;
+NSNumber *TOTAL_NO_ROW = 0;
 #define COL_FAVOURITE 5;
 
 #define TABLE_NAME @"hindi";

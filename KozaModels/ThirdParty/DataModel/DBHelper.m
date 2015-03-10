@@ -174,7 +174,7 @@
 }
 
 //
--(void) updateColumn                                                                                                                                                                                                                                                               :(NSNumber *)ID val:(BOOL)val forColName:(NSString*)colName
+-(void) updateColumn                                                                                                                                                                                                                                                       :(NSNumber *)ID val:(BOOL)val forColName:(NSString*)colName
 {
     
     if (!DatabaseQueue) {
@@ -319,7 +319,45 @@
     });
 }
 
+//get total number of row
+-(NSNumber *) getTotalNosOfRow{
+    
+    if(TOTAL_NO_ROW!=0){
+        return TOTAL_NO_ROW;
+    }else{
+        if (![db open]) {
+            return 0;
+        }
+        NSString *query = [NSString stringWithFormat:@"SELECT Count(*) FROM hindi"];
+        FMResultSet *results = [db executeQuery:query];
+        
+        if([results next]){
+            TOTAL_NO_ROW = @([results intForColumnIndex:0]);
+        }
+        return TOTAL_NO_ROW;
+    }
+    
+}
 
+////get Random Word
+//-(void) getRandomWords : finishBlock:(void (^)(NSArray *record ,NSError *err))finishBlock{
+//    
+//    __block DictData *row = [[DictData alloc] init];
+//    
+//    void (^fBlock)(NSError *err) = ^(NSError *err){
+//        DM_DISPATCH_START
+//        if (err) { //Failed
+//            finishBlock(nil,err);
+//        }else { //Success
+//            finishBlock(row, nil);
+//        }
+//        DM_DISPATCH_END
+//    };
+//    
+//    NSNumber *total = [self getTotalNosOfRow];
+//    //get random value
+//    
+//}
 
 
 
